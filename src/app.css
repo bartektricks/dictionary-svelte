@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply font-inter;
+  }
+
+  html[data-font="serif"] {
+    @apply font-lora;
+  }
+
+  html[data-font="mono"] {
+    @apply font-inconsolata;
+  }
+
+  body {
+    @apply bg-white dark:bg-black text-black dark:text-white;
+  }
+}
+
+
+@layer components {
+  .container {
+    @apply px-6 md:px-10 lg:px-0 mx-auto max-w-[737px];
+  }
+}
