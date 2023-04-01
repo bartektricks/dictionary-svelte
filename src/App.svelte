@@ -1,25 +1,49 @@
 <script lang="ts">
-  import Dropdown from './components/Dropdown.svelte'
-  import ThemeSwitcher from './components/ThemeSwitcher.svelte'
-  import IconMoon from './icons/IconMoon.svelte'
-  import Logo from './icons/Logo.svelte'
+  import { onMount } from 'svelte'
+  import Error from './components/Error.svelte'
+  import Nav from './components/Nav.svelte'
+  import Search from './components/Search.svelte'
+  import WordView from './components/WordView.svelte'
+  import { getTextFromQueryParam } from './helpers'
+  import type { MissingWordResponseData, WordResponseData } from './types'
+
+  let searchData: WordResponseData
+  let searchError: MissingWordResponseData
+
+  async function handleSearch(inputValue: string) {
+    try {
+      const res = await fetch(`/dictionary/${inputValue}`)
+      const json = await res.json()
+
+      if (res.status === 404) {
+        searchError = json
+        searchData = undefined
+      } else {
+        searchError = undefined
+        searchData = json.at(0)
+      }
+    } catch (error) {
+      console.warn(error)
+    }
+  }
+
+  onMount(() => {
+    const word = getTextFromQueryParam()
+
+    if (word) {
+      handleSearch(word)
+    }
+  })
 </script>
 
 <main>
-  <nav
-    class="container flex items-center justify-between py-6 md:pt-14 md:pb-12"
-  >
-    <a href="/" title="Homepage">
-      <Logo />
-    </a>
-    <div class="flex items-center">
-      <div
-        class="relative mr-8 after:absolute after:top-0 after:bottom-0 after:-right-4 after:w-[1px] after:bg-black40 after:content-['']"
-      >
-        <Dropdown />
-      </div>
-      <ThemeSwitcher />
-      <IconMoon class="ml-5 text-dark-grey dark:text-purple" />
-    </div>
-  </nav>
+  <Nav />
+  <Search {handleSearch} />
+
+  {#if searchError}
+    <Error {...searchError} />
+  {/if}
+  {#if searchData}
+    <WordView {searchData} />
+  {/if}
 </main>

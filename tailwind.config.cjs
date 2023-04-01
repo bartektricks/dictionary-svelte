@@ -1,9 +1,12 @@
+const plugin = require('tailwindcss/plugin');
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ['./src/**/*.{html,js,svelte,ts}'],
   darkMode: 'class',
   theme: {
     colors: {
+      transparent: 'transparent',
       black: '#050505',
       black80: '#1f1f1f',
       black60: '#2d2d2d',
@@ -21,24 +24,24 @@ module.exports = {
       inconsolata: 'Inconsolata, monospace'
     },
     fontSize: {
-      'body-s': ['14px', {
-        lineHeight: '17px',
+      'body-s': ['0.875rem', { // 14px
+        lineHeight: '1.0625rem', // 17px
         fontWeight: 400
       }],
-      'body-m': ['18px', {
-        lineHeight: '24px',
+      'body-m': ['1.125rem', { // 18px
+        lineHeight: '1.5rem', // 24px
         fontWeight: 400
       }],
-      'heading-s': ['20px', {
-        lineHeight: '24px',
+      'heading-s': ['1.25rem', { // 20px
+        lineHeight: '1.5rem', // 24px
         fontWeight: 400
       }],
-      'heading-m': ['24px', {
-        lineHeight: '29px',
+      'heading-m': ['1.5rem', { // 24px
+        lineHeight: '1.8125rem', //29px
         fontWeight: 400
       }],
-      'heading-l': ['64px', {
-        lineHeight: '77px',
+      'heading-l': ['4rem', { // 64px
+        lineHeight: '4.8125rem', // 77 px
         fontWeight: 700
       }]
     },
@@ -50,8 +53,19 @@ module.exports = {
     extend: {
       boxShadow: {
         dropdown: '0px 5px 30px rgba(0, 0, 0, 0.1)'
-      }
+      },
     },
   },
-  plugins: [],
+  plugins: [
+    plugin(function({ matchUtilities, theme }) {
+      matchUtilities(
+        {
+          'text-fill': (value) => ({
+            '-webkit-text-fill-color': value
+          }),
+        },
+        { values: theme('colors') }
+      )
+    })
+  ],
 }

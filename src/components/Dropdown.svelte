@@ -53,8 +53,10 @@
   let fontType = localStorage.getItem(FONT_TYPE_LS) || LIST.at(0).name
   let isOpened = false
 
-  $: document.documentElement.setAttribute(FONT_ATTRIBUTE, fontType)
-  $: localStorage.setItem(FONT_TYPE_LS, fontType)
+  $: {
+    document.documentElement.setAttribute(FONT_ATTRIBUTE, fontType)
+    localStorage.setItem(FONT_TYPE_LS, fontType)
+  }
 </script>
 
 <svelte:body class={fontType} />

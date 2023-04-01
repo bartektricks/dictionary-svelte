@@ -9,30 +9,19 @@
 
   function handleSwitchDarkMode() {
     darkMode = !darkMode
+  }
 
-    localStorage.setItem(THEME, darkMode ? DARK : LIGHT)
-
+  $: {
     darkMode
       ? document.documentElement.classList.add(DARK)
       : document.documentElement.classList.remove(DARK)
+
+    localStorage.setItem(THEME, darkMode ? DARK : LIGHT)
   }
 </script>
 
-<svelte:head>
-  <script>
-    if (
-      localStorage.getItem('theme') === 'dark' ||
-      window.matchMedia('(prefers-color-scheme: dark)').matches
-    ) {
-      document.documentElement.classList.add('dark')
-    } else {
-      document.documentElement.classList.remove('dark')
-    }
-  </script>
-</svelte:head>
-
 <button
-  class="rounded-2.5 h-5 w-10 bg-dark-grey hover:bg-purple dark:bg-purple"
+  class="h-5 w-10 rounded-2.5 bg-dark-grey hover:bg-purple dark:bg-purple"
   on:click={handleSwitchDarkMode}
 >
   <div
