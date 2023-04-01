@@ -40,7 +40,7 @@
       placeholder="Search for any word..."
     />
     <svg
-      class="py-4 pr-6"
+      class="py-4 pr-4 md:pr-6"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 18 18"
     >

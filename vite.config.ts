@@ -6,10 +6,9 @@ export default defineConfig({
   plugins: [svelte()],
   server: {
     proxy: {
-      '/dictionary': {
+      'https://api.dictionaryapi.dev/api/v2/entries/en': {
         target: "https://api.dictionaryapi.dev",
         changeOrigin: true,
-        rewrite: path => path.replace(/\/dictionary/, '/api/v2/entries/en'),
       }
     },
   }

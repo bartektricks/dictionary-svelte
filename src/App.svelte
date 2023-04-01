@@ -12,7 +12,9 @@
 
   async function handleSearch(inputValue: string) {
     try {
-      const res = await fetch(`/dictionary/${inputValue}`)
+      const res = await fetch(
+        `https://api.dictionaryapi.dev/api/v2/entries/en/${inputValue}`
+      )
       const json = await res.json()
 
       if (res.status === 404) {
