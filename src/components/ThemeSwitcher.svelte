@@ -3,9 +3,9 @@
   const DARK = 'dark'
   const LIGHT = 'light'
 
-  let darkMode =
-    localStorage.getItem(THEME) === DARK ||
-    window.matchMedia('(prefers-color-scheme: dark)').matches
+  let darkMode = !('theme' in localStorage)
+    ? window.matchMedia('(prefers-color-scheme: dark)').matches
+    : localStorage.getItem(THEME) === DARK
 
   function handleSwitchDarkMode() {
     darkMode = !darkMode
