@@ -51,6 +51,9 @@ module.exports = {
       full: '50%'
     },
     extend: {
+      screens: {
+        xs: '375px'
+      },
       boxShadow: {
         dropdown: '0px 5px 30px rgba(0, 0, 0, 0.1)'
       },

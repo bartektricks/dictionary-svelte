@@ -1,5 +1,6 @@
 <script lang="ts">
   import { onMount } from 'svelte'
+  import { PARAM_NAME } from '../helpers'
   import type { WordResponseData } from '../types'
 
   export let searchData: WordResponseData
@@ -43,10 +44,12 @@
 <div class="container mt-6 md:mt-12">
   <div class="flex items-center justify-between">
     <div>
-      <h1 class="mb-1.5 text-[2rem] text-black60 dark:text-white">
+      <h1
+        class="mb-1.5 text-[2rem] text-black60 dark:text-white md:text-heading-l"
+      >
         {searchData.word}
       </h1>
-      <p class="text-purple">
+      <p class="text-purple md:text-heading-m">
         {phoneticWithAudio?.text || searchData.phonetics[0].text}
       </p>
     </div>
@@ -73,14 +76,16 @@
     {/if}
   </div>
   {#each searchData.meanings as meaning}
-    <div class="pt-8">
+    <div class="pt-8 md:pt-10 md:text-heading-s">
       <h2
-        class="mb-8 flex items-center gap-4 text-body-m italic text-black60 after:h-[1px] after:w-full after:bg-grey after:content-[''] dark:text-white dark:after:bg-black40"
+        class="mb-8 flex items-center gap-4 text-body-m font-bold italic text-black60 after:h-[1px] after:w-full after:bg-grey after:content-[''] dark:text-white dark:after:bg-black40 md:mb-10 md:gap-8 md:text-heading-s md:font-bold"
       >
         {meaning.partOfSpeech}
       </h2>
-      <p class="mb-4 text-dark-grey">Meaning</p>
-      <ul class="flex list-inside list-disc flex-col gap-3 pl-[1em]">
+      <p class="mb-4 text-dark-grey md:mb-7">Meaning</p>
+      <ul
+        class="flex list-inside list-disc flex-col gap-3 pl-[1em] md:text-body-m"
+      >
         {#each meaning.definitions as definition}
           <li
             class="list-outside pl-2.5 text-black60 marker:text-purple dark:text-white"
@@ -94,18 +99,41 @@
           </li>
         {/each}
       </ul>
+      {#if meaning.synonyms.length}
+        <div
+          class="mt-6 flex items-center gap-x-2 md:mt-10 md:gap-x-10 md:text-heading-s"
+        >
+          <p class="text-dark-grey">Synonyms</p>
+          <ul class="flex gap-1">
+            {#each meaning.synonyms as synonym}
+              <li>
+                <a
+                  href={`/?${PARAM_NAME}=${synonym}`}
+                  class="font-bold text-purple"
+                >
+                  {synonym}
+                </a>
+              </li>
+            {/each}
+          </ul>
+        </div>
+      {/if}
     </div>
   {/each}
-  <div class="mt-8 mb-20 border-t border-black40 pt-8">
-    <h4 class="mb-2 text-dark-grey underline">Source</h4>
+  <div
+    class="mt-8 mb-20 grid-cols-[auto_1fr] border-t border-black40 pt-8 text-body-s md:mt-10 md:mb-24 md:grid md:gap-x-6 md:gap-y-2 md:pt-6"
+  >
+    <h4 class="mb-2 text-dark-grey underline md:mb-0 md:no-underline">
+      Source
+    </h4>
     {#each searchData.sourceUrls as sourceUrl}
       <a
         href={sourceUrl}
-        class="mb-8 flex items-center text-black60 underline last:mb-0 dark:text-white"
+        class="col-start-2 col-end-3 mb-8 flex items-center break-all text-black60 underline last:mb-0 dark:text-white md:mb-0"
         target="_blank"
         >{sourceUrl}
         <svg
-          class="ml-2"
+          class="ml-2 hidden xs:block"
           width="13"
           height="14"
           viewBox="0 0 13 14"

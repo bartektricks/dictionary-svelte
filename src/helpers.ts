@@ -1,4 +1,4 @@
-const PARAM_NAME = 'word'
+export const PARAM_NAME = 'word'
 
 export function getTextFromQueryParam() {
   const urlParams = new URLSearchParams(window.location.search)
