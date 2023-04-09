@@ -1,4 +1,6 @@
 <script lang="ts">
+  import IconMoon from '../icons/IconMoon.svelte'
+
   const THEME = 'theme'
   const DARK = 'dark'
   const LIGHT = 'light'
@@ -20,13 +22,17 @@
   }
 </script>
 
-<button
-  class="h-5 w-10 rounded-2.5 bg-dark-grey hover:bg-purple dark:bg-purple"
-  on:click={handleSwitchDarkMode}
->
-  <div
-    class={`m-[0.1875rem] aspect-square w-3.5 rounded-full bg-white ${
-      darkMode ? 'translate-x-5' : ''
-    }`}
-  />
-</button>
+<label for="theme-switcher" class="flex gap-5">
+  <button
+    id="theme-switcher"
+    class="h-5 w-10 rounded-2.5 bg-dark-grey hover:bg-purple dark:bg-purple"
+    on:click={handleSwitchDarkMode}
+  >
+    <div
+      class={`m-[0.1875rem] aspect-square w-3.5 rounded-full bg-white ${
+        darkMode ? 'translate-x-5' : ''
+      }`}
+    />
+  </button>
+  <IconMoon class="text-dark-grey dark:text-purple" />
+</label>

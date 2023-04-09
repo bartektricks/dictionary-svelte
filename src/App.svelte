@@ -45,6 +45,7 @@
   {#if searchError}
     <Error {...searchError} />
   {/if}
+
   {#if searchData}
     <WordView {searchData} />
   {/if}

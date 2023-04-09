@@ -1,5 +1,4 @@
 <script lang="ts">
-  import IconMoon from '../icons/IconMoon.svelte'
   import Logo from '../icons/Logo.svelte'
   import Dropdown from './Dropdown.svelte'
   import ThemeSwitcher from './ThemeSwitcher.svelte'
@@ -16,6 +15,5 @@
       <Dropdown />
     </div>
     <ThemeSwitcher />
-    <IconMoon class="ml-5 text-dark-grey dark:text-purple" />
   </div>
 </nav>
