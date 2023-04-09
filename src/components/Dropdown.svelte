@@ -65,9 +65,14 @@
   class="relative flex flex-col gap-4 text-body-m font-bold"
   bind:this={dropdownRef}
 >
-  <button class="flex items-center gap-4" on:click={toggleOpen}
-    >{fontType} <IconArrowDown /></button
+  <button
+    class="flex items-center gap-4"
+    aria-label="Font switcher"
+    on:click={toggleOpen}
   >
+    {fontType}
+    <IconArrowDown />
+  </button>
   {#if isOpened}
     <div
       class="absolute top-full right-0 mt-4 flex flex-col items-start gap-4 rounded-4 bg-white p-6 shadow-dropdown dark:bg-black60 dark:shadow-purple"

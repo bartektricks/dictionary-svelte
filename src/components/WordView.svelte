@@ -55,6 +55,7 @@
     </div>
     {#if phoneticWithAudio?.audio}
       <button
+        aria-label="Play word pronunciation audio"
         on:click={playAudio}
         class="group aspect-square w-12 md:w-[4.6875rem]"
       >
@@ -123,9 +124,9 @@
   <div
     class="mt-8 mb-20 grid-cols-[auto_1fr] border-t border-black40 pt-8 text-body-s md:mt-10 md:mb-24 md:grid md:gap-x-6 md:gap-y-2 md:pt-6"
   >
-    <h4 class="mb-2 text-dark-grey underline md:mb-0 md:no-underline">
+    <h3 class="mb-2 text-dark-grey underline md:mb-0 md:no-underline">
       Source
-    </h4>
+    </h3>
     {#each searchData.sourceUrls as sourceUrl}
       <a
         href={sourceUrl}

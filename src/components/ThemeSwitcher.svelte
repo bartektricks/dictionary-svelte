@@ -25,6 +25,7 @@
 <label for="theme-switcher" class="flex gap-5">
   <button
     id="theme-switcher"
+    aria-label="Theme switcher"
     class="h-5 w-10 rounded-2.5 bg-dark-grey hover:bg-purple dark:bg-purple"
     on:click={handleSwitchDarkMode}
   >
