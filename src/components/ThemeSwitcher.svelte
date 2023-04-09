@@ -29,8 +29,8 @@
     class="h-5 w-10 rounded-2.5 bg-dark-grey hover:bg-purple dark:bg-purple"
     on:click={handleSwitchDarkMode}
   >
-    <div
-      class={`m-[0.1875rem] aspect-square w-3.5 rounded-full bg-white ${
+    <span
+      class={`m-[0.1875rem] block aspect-square w-3.5 rounded-full bg-white ${
         darkMode ? 'translate-x-5' : ''
       }`}
     />
